@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class LibraryManagementSystemMain {
 
     public static void main(String[] args) {
-        // Initialize objects
+        
         Library library = new Library();
         LibraryManagementSystem system = new LibraryManagementSystem(library);
         Scanner scanner = new Scanner(System.in);
 
-        // Menu-driven program
+       
         while (true) {
             System.out.println("\nLibrary Management System Menu:");
             System.out.println("1. Add New Book");
@@ -22,11 +22,11 @@ public class LibraryManagementSystemMain {
             System.out.println("7. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();  
 
             switch (choice) {
                 case 1:
-                    // Add New Book
+                    
                     System.out.print("Enter Book ID: ");
                     String bookId = scanner.nextLine();
                     System.out.print("Enter Book Title: ");
@@ -39,7 +39,7 @@ public class LibraryManagementSystemMain {
                     break;
 
                 case 2:
-                    // Add New Member
+                    
                     System.out.print("Enter Member ID: ");
                     String memberId = scanner.nextLine();
                     System.out.print("Enter Member Name: ");
@@ -48,7 +48,7 @@ public class LibraryManagementSystemMain {
                     break;
 
                 case 3:
-                    // Display Available Books
+                    
                     System.out.println("Available Books:");
                     for (Book book : library.listBooks()) {
                         String availability = book.isAvailable() ? "Available" : "Not Available";
@@ -57,7 +57,7 @@ public class LibraryManagementSystemMain {
                     break;
 
                 case 4:
-                    // Borrow Book
+                    
                     System.out.print("Enter Member ID to borrow a book: ");
                     String borrowerId = scanner.nextLine();
                     Member borrower = library.listMembers().stream()
@@ -74,7 +74,7 @@ public class LibraryManagementSystemMain {
                     break;
 
                 case 5:
-                    // Return Book
+                    
                     System.out.print("Enter Member ID to return a book: ");
                     String returnerId = scanner.nextLine();
                     Member returner = library.listMembers().stream()
@@ -91,7 +91,7 @@ public class LibraryManagementSystemMain {
                     break;
 
                 case 6:
-                    // Check Book Availability
+                   
                     System.out.print("Enter Book ID to check availability: ");
                     String checkBookId = scanner.nextLine();
                     boolean available = system.checkBookAvailability(checkBookId);
@@ -99,7 +99,7 @@ public class LibraryManagementSystemMain {
                     break;
 
                 case 7:
-                    // Exit
+                    
                     System.out.println("Exiting the program.");
                     scanner.close();
                     return;
