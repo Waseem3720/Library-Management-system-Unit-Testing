@@ -67,3 +67,37 @@ public class ExcelDataReader {
         return false;
     }
 }
+
+
+public static List<Object[]> readLibraryTestData(String filePath) throws IOException {
+    List<Object[]> testData = new ArrayList<>();
+
+    // Open the Excel file
+    FileInputStream file = new FileInputStream(new File(filePath));
+    Workbook workbook = new XSSFWorkbook(file);
+    Sheet sheet = workbook.getSheetAt(0); // Assumes data is on the first sheet
+
+    // Iterate over rows (skip the header row)
+    for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+        Row row = sheet.getRow(i);
+        if (row == null) continue; // Skip null rows
+
+        // Retrieve and validate cell data for Book and Member fields
+        String bookId = getCellValueAsString(row.getCell(0));
+        String title = getCellValueAsString(row.getCell(1));
+        String author = getCellValueAsString(row.getCell(2));
+        boolean isAvailable = getCellValueAsBoolean(row.getCell(3));
+        String memberId = getCellValueAsString(row.getCell(4));
+        String memberName = getCellValueAsString(row.getCell(5));
+        String memberType = getCellValueAsString(row.getCell(6));
+
+        // Add data to list
+        testData.add(new Object[]{bookId, title, author, isAvailable, memberId, memberName, memberType});
+    }
+
+    // Close resources
+    workbook.close();
+    file.close();
+
+    return testData;
+}

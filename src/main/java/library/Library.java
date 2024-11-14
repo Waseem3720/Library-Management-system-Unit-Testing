@@ -19,13 +19,17 @@ public class Library {
         return books;
     }
 
-    public List<Member> listMembers() {
+    public List<Member> listMembers() 
+    {
         return members;
     }
 
-    public boolean isBookAvailable(String bookId) {
-        for (Book book : books) {
-            if (book.getBookId().equals(bookId) && book.isAvailable()) {
+    public boolean isBookAvailable(String bookId) 
+    {
+        for (Book book : books) 
+        {
+            if (book.getBookId().equals(bookId) && book.isAvailable()) 
+            {
                 return true;
             }
         }
