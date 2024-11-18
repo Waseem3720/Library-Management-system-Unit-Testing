@@ -12,13 +12,13 @@ import static org.testng.Assert.*;
 
 public class LibraryManagementSystemTest {
 
-    @Test(dataProvider = "newBookData")
+    @Test(dataProvider = "newBookData", priority = 1, groups = "Book")
     public void testAddNewBook(String bookId, String title, String author, boolean isAvailable) {
         Library library = new Library();
         LibraryManagementSystem lms = new LibraryManagementSystem(library);
         String result = lms.addNewBook(bookId, title, author, isAvailable);
         assertEquals(result, "New book added: " + title);
-        // Check if the book was added to the library
+
         boolean bookExists = library.listBooks().stream()
                                     .anyMatch(book -> book.getBookId().equals(bookId) &&
                                                       book.getTitle().equals(title) &&
@@ -26,20 +26,20 @@ public class LibraryManagementSystemTest {
         assertTrue(bookExists, "Book should be added to the library.");
     }
 
-    @Test(dataProvider = "newMemberData")
+    @Test(dataProvider = "newMemberData", priority = 2, groups = "Member")
     public void testAddNewMember(String memberId, String name) {
         Library library = new Library();
         LibraryManagementSystem lms = new LibraryManagementSystem(library);
         String result = lms.addNewMember(memberId, name);
         assertEquals(result, "New member added: " + name);
-        // Check if the member was added to the library
+        
         boolean memberExists = library.listMembers().stream()
                                        .anyMatch(member -> member.getMemberId().equals(memberId) &&
                                                            member.getName().equals(name));
         assertTrue(memberExists, "Member should be added to the library.");
     }
 
-    @Test(dataProvider = "checkBookAvailabilityData")
+    @Test(dataProvider = "checkBookAvailabilityData", priority = 3, groups = "Book")
     public void testCheckBookAvailability(String bookId, boolean expectedAvailability) {
         Library library = new Library();
         LibraryManagementSystem lms = new LibraryManagementSystem(library);
@@ -48,6 +48,8 @@ public class LibraryManagementSystemTest {
         boolean isAvailable = lms.checkBookAvailability(bookId);
         assertEquals(isAvailable, expectedAvailability);
     }
+
+    // DataProviders
 
     @DataProvider
     public Object[][] newBookData() {

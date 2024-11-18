@@ -8,7 +8,7 @@ import static org.testng.Assert.*;
 
 public class LibraryTest {
 
-    @Test(dataProvider = "bookData")
+    @Test(dataProvider = "bookData", groups = {"bookTests", "addTests"}, priority = 1)
     public void testAddBook(Book book) {
         Library library = new Library();
         library.addBook(book);
@@ -16,7 +16,7 @@ public class LibraryTest {
         assertTrue(books.contains(book), "The book should be added to the library");
     }
 
-    @Test(dataProvider = "memberData")
+    @Test(dataProvider = "memberData", groups = {"memberTests", "addTests"}, priority = 2)
     public void testAddMember(Member member) {
         Library library = new Library();
         library.addMember(member);
@@ -24,7 +24,7 @@ public class LibraryTest {
         assertTrue(members.contains(member), "The member should be added to the library");
     }
 
-    @Test(dataProvider = "listBooksData")
+    @Test(dataProvider = "listBooksData", groups = {"bookTests", "listTests"}, priority = 3)
     public void testListBooks(Book book1, Book book2) {
         Library library = new Library();
         library.addBook(book1);
@@ -33,7 +33,7 @@ public class LibraryTest {
         assertEquals(books.size(), 2, "There should be 2 books in the library");
     }
 
-    @Test(dataProvider = "listMembersData")
+    @Test(dataProvider = "listMembersData", groups = {"memberTests", "listTests"}, priority = 4)
     public void testListMembers(Member member1, Member member2) {
         Library library = new Library();
         library.addMember(member1);
@@ -42,7 +42,7 @@ public class LibraryTest {
         assertEquals(members.size(), 2, "There should be 2 members in the library");
     }
 
-    @Test(dataProvider = "bookAvailabilityData")
+    @Test(dataProvider = "bookAvailabilityData", groups = {"bookTests", "availabilityTests"}, priority = 5)
     public void testIsBookAvailable(String bookId, boolean expectedAvailability) {
         Library library = new Library();
         // Define books with their availability

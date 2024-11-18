@@ -10,41 +10,43 @@ import static org.testng.Assert.*;
 
 public class BookTest {
 
-    // Test for getBookId method
-    @Test(dataProvider = "bookIdData")
+
+    // Group: Getters
+    @Test(groups = {"getters"}, dataProvider = "bookIdData", priority = 1)
     public void testGetBookId(String expectedBookId, String bookId, String title, String author, boolean isAvailable) {
         Book book = new Book(bookId, title, author, isAvailable);
         assertEquals(book.getBookId(), expectedBookId);
     }
 
-    // Test for getTitle method
-    @Test(dataProvider = "bookTitleData")
+    @Test(groups = {"getters"}, dataProvider = "bookTitleData", priority = 2)
     public void testGetTitle(String expectedTitle, String bookId, String title, String author, boolean isAvailable) {
         Book book = new Book(bookId, title, author, isAvailable);
         assertEquals(book.getTitle(), expectedTitle);
     }
 
-    // Test for getAuthor method
-    @Test(dataProvider = "bookAuthorData")
+    @Test(groups = {"getters"}, dataProvider = "bookAuthorData", priority = 3)
     public void testGetAuthor(String expectedAuthor, String bookId, String title, String author, boolean isAvailable) {
         Book book = new Book(bookId, title, author, isAvailable);
         assertEquals(book.getAuthor(), expectedAuthor);
     }
 
-    // Test for isAvailable method
-    @Test(dataProvider = "bookAvailabilityData")
+    @Test(groups = {"getters"}, dataProvider = "bookAvailabilityData", priority = 4)
     public void testIsAvailable(boolean expectedAvailability, String bookId, String title, String author, boolean isAvailable) {
         Book book = new Book(bookId, title, author, isAvailable);
         assertEquals(book.isAvailable(), expectedAvailability);
     }
 
-    // Test for setAvailable method
-    @Test(dataProvider = "setAvailableData")
+    // Group: Setters
+    @Test(groups = {"setters"}, dataProvider = "setAvailableData", priority = 5)
     public void testSetAvailable(boolean expectedAvailability, String bookId, String title, String author, boolean isAvailable) {
         Book book = new Book(bookId, title, author, isAvailable);
         book.setAvailable(expectedAvailability);
         assertEquals(book.isAvailable(), expectedAvailability);
     }
+
+    
+
+
 
     // DataProvider for getBookId
     @DataProvider

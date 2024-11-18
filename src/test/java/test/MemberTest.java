@@ -9,38 +9,36 @@ import static org.testng.Assert.*;
 
 public class MemberTest {
 
-    // Test for borrowBook method
-    @Test(dataProvider = "borrowBookData")
+
+	// Group: Borrow and Return
+    @Test(groups = {"borrow_return"}, dataProvider = "borrowBookData", priority = 1)
     public void testBorrowBook(String expectedMessage, boolean isAvailable, String bookId, String title, String author, String memberId, String memberName) {
         Book book = new Book(bookId, title, author, isAvailable);
         Member member = new Member(memberId, memberName);
         assertEquals(member.borrowBook(book), expectedMessage);
     }
 
-    // Test for returnBook method
-    @Test(dataProvider = "returnBookData")
+    @Test(groups = {"borrow_return"}, dataProvider = "returnBookData", priority = 2)
     public void testReturnBook(String expectedMessage, boolean isAvailable, String bookId, String title, String author, String memberId, String memberName) {
         Book book = new Book(bookId, title, author, isAvailable);
         Member member = new Member(memberId, memberName);
         assertEquals(member.returnBook(book), expectedMessage);
     }
 
-    // Test for getMemberId method
-    @Test(dataProvider = "memberIdData")
+    // Group: Member Info
+    @Test(groups = {"member_info"}, dataProvider = "memberIdData", priority = 3)
     public void testGetMemberId(String expectedMemberId, String memberId, String memberName) {
         Member member = new Member(memberId, memberName);
         assertEquals(member.getMemberId(), expectedMemberId);
     }
 
-    // Test for getName method
-    @Test(dataProvider = "memberNameData")
+    @Test(groups = {"member_info"}, dataProvider = "memberNameData", priority = 4)
     public void testGetName(String expectedMemberName, String memberId, String memberName) {
         Member member = new Member(memberId, memberName);
         assertEquals(member.getName(), expectedMemberName);
     }
 
-    // Test for getDetails method
-    @Test(dataProvider = "memberDetailsData")
+    @Test(groups = {"member_info"}, dataProvider = "memberDetailsData", priority = 5)
     public void testGetDetails(String expectedDetails, String memberId, String memberName) {
         Member member = new Member(memberId, memberName);
         assertEquals(member.getDetails(), expectedDetails);
